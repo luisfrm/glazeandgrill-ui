@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
 });
 
@@ -24,9 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
+          rel="stylesheet" 
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${plusJakartaSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
