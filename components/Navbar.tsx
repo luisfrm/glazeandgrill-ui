@@ -13,7 +13,7 @@ const navItems = [
 ];
 
 const header = {
-	title: 'Glaze & Grill',
+	title: 'Restaurante Veritas',
 };
 
 export default function Navbar() {
