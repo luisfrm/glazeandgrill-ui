@@ -51,3 +51,27 @@ code, kbd, pre, samp {
 button {
   cursor: pointer;
 }
+
+@keyframes ripple {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: var(--ripple-size);
+    height: var(--ripple-size);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 5ms ease-out forwards;
+}
