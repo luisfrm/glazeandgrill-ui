@@ -98,7 +98,7 @@ export function useRipple(elementRef: RefObject<HTMLElement | null>): UseRippleR
           style={{
             width: 0,
             height: 0,
-            animation: 'ripple 75ms ease-out forwards',
+            animation: 'ripple 150ms ease-out forwards',
             '--ripple-size': `${rippleStyle.size}px`,
           } as React.CSSProperties}
         />

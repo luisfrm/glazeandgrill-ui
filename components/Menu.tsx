@@ -2,8 +2,8 @@
 
 import useCategoryStore from '@/stores/useCategory';
 import Link from 'next/link';
-import Icon from './Icon';
 import MenuCard from './MenuCard';
+import { ArrowRight } from 'lucide-react';
 
 const Menu = () => {
 	const { categories } = useCategoryStore();
@@ -14,7 +14,7 @@ const Menu = () => {
 			<div className="flex justify-between items-end">
 				<h3 className="text-3xl font-800">Explora nuestro menu</h3>
 				<Link href="#" className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
-					View All <Icon>arrow_forward</Icon>
+					View All <ArrowRight />
 				</Link>
 			</div>
 

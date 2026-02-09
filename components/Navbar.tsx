@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { cn } from '@/helper/helper';
-import Icon from './Icon';
+import { CircleUser, Menu, Search, ShoppingBag } from 'lucide-react';
 
 const navItems = [
 	{ label: 'Inicio', href: '#', active: true },
@@ -24,10 +24,10 @@ export default function Navbar() {
 			{/* Left Section */}
 			<div className="flex items-center gap-4">
 				<button className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full lg:hidden cursor-pointer">
-					<Icon changeOnHover>menu</Icon>
+					<Menu />
 				</button>
 				<Link href="/" className="text-xl font-bold">
-          <h1 className="text-2xl font-800 tracking-tight text-gray-900 cursor-pointer">{header.title}</h1>
+          <h1 className="text-lg lg:text-2xl font-800 tracking-tight text-gray-900 cursor-pointer">{header.title}</h1>
         </Link>
 			</div>
 
@@ -40,21 +40,21 @@ export default function Navbar() {
 
 			{/* Right Section */}
 			<div className="flex items-center gap-4">
-				<button className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full cursor-pointer">
-					<Icon changeOnHover>search</Icon>
+				<button className="p-2">
+					<Search className='hover:text-sweet transition-colors duration-200' />
 				</button>
 
-				<button className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full relative cursor-pointer">
-					<Icon changeOnHover>shopping_bag</Icon>
+				<button className="p-2 rounded-full relative">
+					<ShoppingBag className='hover:text-sweet transition-colors duration-200' />
 					{cartCount > 0 && (
-						<span className="absolute top-1 right-1 bg-black text-white dark:bg-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+						<span className="pointer-events-none absolute top-1 right-1 bg-black text-white dark:bg-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
 							{cartCount}
 						</span>
 					)}
 				</button>
 
 				<button className="hidden md:flex items-center gap-2 p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full cursor-pointer">
-					<Icon changeOnHover>account_circle</Icon>
+					<CircleUser className='hover:text-sweet transition-colors duration-200' />
 				</button>
 			</div>
 		</header>

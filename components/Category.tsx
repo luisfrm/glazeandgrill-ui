@@ -1,9 +1,9 @@
 'use client  '
 
-import Icon from './Icon'
 import { cn } from '@/helper/helper'
 import { useRef } from 'react';
 import { useRipple } from '@/hooks/useRipple';
+import { Cake, Croissant, Hamburger, IceCreamCone, Martini } from 'lucide-react';
 
 interface CategoryCardProps {
   icon: string
@@ -47,6 +47,14 @@ export default function Category({ icon, label, color, onClick }: CategoryCardPr
   const categoryRef = useRef<HTMLDivElement>(null)
   const { rippleHandlers, RippleEffect } = useRipple(categoryRef)
 
+  const icons = {
+    cake: <Cake className={colors.text} />,
+    burger: <Hamburger className={colors.text} />,
+    bakery: <Croissant className={colors.text} />,
+    local_bar: <Martini className={colors.text} />,
+    icecream: <IceCreamCone className={colors.text} />,
+  }
+
   return (
     <div className="flex flex-col items-center gap-3 group cursor-pointer" onClick={onClick}>
       <div
@@ -59,7 +67,7 @@ export default function Category({ icon, label, color, onClick }: CategoryCardPr
         )}
         {...rippleHandlers}
       >
-        <Icon className={`text-3xl ${colors.text}`}>{icon}</Icon>
+        {icons[icon as keyof typeof icons]}
         <RippleEffect />
       </div>
       <span className="font-bold text-sm">{label}</span>
