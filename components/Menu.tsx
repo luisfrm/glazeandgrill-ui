@@ -11,7 +11,7 @@ const Menu = () => {
 
 	return (
 		<section className="flex flex-col gap-6">
-			<div className="flex justify-between items-end">
+			<div className="flex md:justify-between md:items-end flex-col md:flex-row gap-4">
 				<h3 className="text-3xl font-800">Explora nuestro menu</h3>
 				<Link href="#" className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
 					View All <ArrowRight />

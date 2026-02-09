@@ -51,14 +51,14 @@ export default function MenuCard({
 	return (
 		<div
 			ref={cardRef}
-			className={cn('relative group overflow-hidden rounded-2xl h-full cursor-pointer', variantClasses[variant])}
+			className={cn('relative min-h-58 group overflow-hidden rounded-2xl h-full cursor-pointer', variantClasses[variant])}
 			{...rippleHandlers}
 		>
 			<Image
 				src={image}
 				fill
 				alt={alt}
-				className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+				className="w-full h-full object-cover transition-transform duration-700 group-active:scale-110 group-hover:scale-110 pointer-events-none"
 			/>
 
 			<RippleEffect />
