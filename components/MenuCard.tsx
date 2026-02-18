@@ -45,8 +45,8 @@ export default function MenuCard({
 	cta,
 	variant,
 }: MenuCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const { rippleHandlers, RippleEffect } = useRipple(cardRef)
+	const cardRef = useRef<HTMLDivElement>(null)
+	const { rippleHandlers, RippleEffect } = useRipple(cardRef)
 
 	return (
 		<div
@@ -80,8 +80,12 @@ export default function MenuCard({
 				{/* Título */}
 				{variant === 'extra-large' ? (
 					<h4 className="text-4xl font-800 text-white mb-6 leading-tight">
-						Family <br />
-						Combos
+						{title.split(' ').map((word, i) => (
+							<span key={i}>
+								{word}
+								{i < title.split(' ').length - 1 && <br />}
+							</span>
+						))}
 					</h4>
 				) : (
 					<h4 className={cn('font-bold text-white', variant === 'large' ? 'text-2xl mb-1' : 'text-xl')}>{title}</h4>

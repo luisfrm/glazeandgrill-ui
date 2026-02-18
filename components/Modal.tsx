@@ -4,6 +4,7 @@
 import { useEffect, useLayoutEffect, useRef, ReactNode, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { cn } from '@/helper/helper'
+import { X } from 'lucide-react'
 
 interface ModalProps {
   isOpen: boolean
@@ -25,8 +26,8 @@ const sizeClasses = {
 }
 
 const variantClasses = {
-  white: 'bg-white dark:bg-gray-900',
-  cream: 'bg-[#efdcb9] dark:bg-background-dark',
+  white: 'bg-white',
+  cream: 'bg-cream',
 }
 
 export default function Modal({
@@ -240,13 +241,19 @@ export default function Modal({
               {title && (
                 <h3
                   id="modal-title"
-                  className="text-2xl font-800 text-gray-900 dark:text-white"
+                  className={cn(
+                    "text-2xl font-bold",
+                    variant === "cream" ? "text-dark" : "text-white"
+                  )}
                 >
                   {title}
                 </h3>
               )}
               {subtitle && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className={cn(
+                  "text-sm",
+                  variant === "cream" ? "text-gray-500" : "text-gray-400"
+                )}>
                   {subtitle}
                 </p>
               )}
@@ -258,9 +265,7 @@ export default function Modal({
                 className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
                 aria-label="Close modal"
               >
-                <span className="material-symbols-outlined text-gray-900 dark:text-white">
-                  close
-                </span>
+                <X className="text-gray-900" size={18} />
               </button>
             )}
           </div>
