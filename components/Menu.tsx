@@ -1,18 +1,15 @@
 'use client';
 
-import useCategoryStore from '@/stores/useCategory';
 import Link from 'next/link';
 import MenuCard from './MenuCard';
 import { ArrowRight } from 'lucide-react';
 import ProductCatalog from '@/components/ProductCatalog'
-import { burgersCatalog } from '@/config/data'
+import { veritasCatalog } from '@/services/catalog'
 import { useState } from 'react';
 import Modal from './Modal';
 
 const Menu = () => {
-	const { categories } = useCategoryStore();
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const selectedCategory = categories.find(category => category.selected) || categories[0];
 
 	return (
 		<section className="flex flex-col gap-6">
@@ -69,11 +66,11 @@ const Menu = () => {
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
 				size="xl"
-				title={burgersCatalog.title}
-				subtitle={burgersCatalog.subtitle}
+				title={veritasCatalog.title}
+				subtitle={veritasCatalog.subtitle}
 				variant="cream"
 			>
-				<ProductCatalog catalog={burgersCatalog} />
+				<ProductCatalog catalog={veritasCatalog} />
 			</Modal>
 		</section>
 	);
