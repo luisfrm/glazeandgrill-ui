@@ -61,6 +61,7 @@ export default function Modal({
       const rafId = requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsAnimating(true)
+          document.body.style.overflow = 'hidden'
         })
       })
       return () => cancelAnimationFrame(rafId)
@@ -72,6 +73,7 @@ export default function Modal({
     if (!isOpen && shouldRender) {
       const raf = requestAnimationFrame(() => {
         setIsAnimating(false)
+        document.body.style.overflow = ''
       })
       const timer = setTimeout(() => {
         setShouldRender(false)
@@ -272,7 +274,15 @@ export default function Modal({
         )}
 
         {/* Content - Scrollable */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className={cn(
+          "flex-1 overflow-y-auto p-6",
+          // Clases para el Scrollbar (v4)
+          "[&::-webkit-scrollbar]:w-1.5",                   // Ancho del scrollbar
+          "[&::-webkit-scrollbar-track]:bg-transparent",    // Fondo del track
+          "[&::-webkit-scrollbar-thumb]:bg-black/20",       // Color de la barra
+          "[&::-webkit-scrollbar-thumb]:rounded-full",      // Bordes redondos
+          "hover:[&::-webkit-scrollbar-thumb]:bg-black/20", // Color al pasar el mouse
+        )}>
           {children}
         </div>
       </div>
