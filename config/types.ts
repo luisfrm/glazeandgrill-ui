@@ -43,13 +43,14 @@ export interface IProduct {
 
 // Interfaz de Categoría
 export interface ICategory {
-  id: string
+  id: string | number
   name: ProductCategory // Nombre de la categoría (enum)
   icon: string // Icono Lucide React
   title: string // Título visible
   subtitle: string
   color: CategoryColor
   products: IProduct[] // Se llenará con filter
+  selected?: boolean
 }
 
 // Interfaz del Catálogo

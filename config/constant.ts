@@ -1,17 +1,9 @@
-import { ICategory } from "./types";
+import { CategoryColor, ICategory, ProductCategory } from "./types";
 
-export enum colors {
-  sweet = 'sweet',
-  orange = 'orange',
-  amber = 'amber',
-  emerald = 'emerald',
-  rose = 'rose',
-}
-
-export const INITIAL_CATEGORIES: ICategory[] = [
-  { id: 1, icon: 'cake', label: 'Postres', color: colors.sweet, selected: false },
-  { id: 2, icon: 'burger', label: 'Burgers', color: colors.orange, selected: false },
-  { id: 3, icon: 'bakery', label: 'Panes', color: colors.amber, selected: false },
-  { id: 4, icon: 'local_bar', label: 'Bebidas', color: colors.emerald, selected: false },
-  { id: 5, icon: 'icecream', label: 'Helados', color: colors.rose, selected: false },
+export const INITIAL_CATEGORIES: (ICategory & { selected: boolean })[] = [
+  { id: 1, icon: 'cake', title: 'Postres', color: CategoryColor.SWEET, selected: false, name: ProductCategory.DESSERT, subtitle: '', products: [] },
+  { id: 2, icon: 'burger', title: 'Burgers', color: CategoryColor.ORANGE, selected: false, name: ProductCategory.BURGER, subtitle: '', products: [] },
+  { id: 3, icon: 'bakery', title: 'Panes', color: CategoryColor.AMBER, selected: false, name: ProductCategory.BREAD, subtitle: '', products: [] },
+  { id: 4, icon: 'local_bar', title: 'Bebidas', color: CategoryColor.EMERALD, selected: false, name: ProductCategory.DRINK, subtitle: '', products: [] },
+  { id: 5, icon: 'icecream', title: 'Helados', color: CategoryColor.ROSE, selected: false, name: ProductCategory.ICECREAM, subtitle: '', products: [] },
 ];
