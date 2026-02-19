@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 const badgeColors = {
-    primary: 'bg-primary text-white',
+    primary: 'bg-red-100 text-red-600',
     emerald: 'bg-emerald-500 text-white',
     orange: 'bg-orange-500 text-white',
 }
