@@ -7,9 +7,9 @@ import { Cake, Croissant, Hamburger, IceCreamCone, Martini } from 'lucide-react'
 
 interface CategoryCardProps {
   icon: string
-  label: string
+  title: string
   color: 'sweet' | 'orange' | 'amber' | 'emerald' | 'rose',
-  selected: boolean,
+  selected?: boolean,
   onClick?: () => void
 }
 
@@ -41,7 +41,7 @@ const colorClasses = {
   },
 }
 
-export default function Category({ icon, label, color, onClick }: CategoryCardProps) {
+export default function Category({ icon, title, color, onClick }: CategoryCardProps) {
   const colors = colorClasses[color]
 
   const categoryRef = useRef<HTMLDivElement>(null)
@@ -70,7 +70,7 @@ export default function Category({ icon, label, color, onClick }: CategoryCardPr
         {icons[icon as keyof typeof icons]}
         <RippleEffect />
       </div>
-      <span className="font-bold text-sm">{label}</span>
+      <span className="font-bold text-sm">{title}</span>
     </div>
   )
 }

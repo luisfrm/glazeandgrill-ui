@@ -5,20 +5,16 @@ import useCategoryStore from '@/stores/useCategory'
 import { ICategory } from '@/config/types'
 
 export default function Categories() {
-  const { categories, toggleCategory } = useCategoryStore();
+  const { categories } = useCategoryStore();
 
   return (
     <section className="flex flex-wrap justify-center gap-6 md:gap-12">
       {categories.map((category: ICategory) => (
         <Category
-          key={category.label}
+          key={category.id}
           icon={category.icon}
-          label={category.label}
+          title={category.title}
           color={category.color}
-          selected={category.selected}
-          onClick={() => {
-            toggleCategory(category.id)
-          }}
         />
       ))}
     </section>
