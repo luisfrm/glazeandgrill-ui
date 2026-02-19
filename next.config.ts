@@ -2,17 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-   allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev'],
-   images: {
+  allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev'],
+  images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'lh3.googleusercontent.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
+        hostname: 'foodish-api.com',
         pathname: '/**',
       },
     ],
