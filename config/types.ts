@@ -43,7 +43,7 @@ export interface IProduct {
 
 // Interfaz de Categoría
 export interface ICategory {
-  id: string | number
+  id: string
   name: ProductCategory // Nombre de la categoría (enum)
   icon: string // Icono Lucide React
   title: string // Título visible

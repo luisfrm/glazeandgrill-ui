@@ -15,6 +15,7 @@ interface MenuCardProps {
 	badgeType?: 'primary' | 'glass';
 	cta?: string;
 	variant: 'small' | 'large' | 'extra-large';
+	onClick?: () => void;
 }
 
 const variantClasses = {
@@ -44,6 +45,7 @@ export default function MenuCard({
 	badgeType = 'primary',
 	cta,
 	variant,
+	onClick
 }: MenuCardProps) {
 	const cardRef = useRef<HTMLDivElement>(null)
 	const { rippleHandlers, RippleEffect } = useRipple(cardRef)
@@ -52,6 +54,7 @@ export default function MenuCard({
 		<div
 			ref={cardRef}
 			className={cn('relative min-h-58 group overflow-hidden rounded-2xl h-full cursor-pointer', variantClasses[variant])}
+			onClick={onClick}
 			{...rippleHandlers}
 		>
 			<Image

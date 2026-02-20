@@ -5,11 +5,25 @@ import MenuCard from './MenuCard';
 import { ArrowRight } from 'lucide-react';
 import ProductCatalog from '@/components/ProductCatalog'
 import { veritasCatalog } from '@/services/catalog'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from './Modal';
+import useCategoryStore from '@/stores/useCategory';
 
 const Menu = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const { unSelectCategory, selectedCategory, selectCategory } = useCategoryStore();
+
+	useEffect(() => {
+		if (selectedCategory) {
+			setIsModalOpen(true);
+		}
+	}, [selectedCategory])
+
+	useEffect(() => {
+		if (!isModalOpen) {
+			unSelectCategory();
+		}
+	}, [isModalOpen])
 
 	return (
 		<section className="flex flex-col gap-6">
@@ -31,6 +45,7 @@ const Menu = () => {
 					title="Hamburguesas"
 					subtitle="Selección Gourmet"
 					variant="large"
+					onClick={() => selectCategory('burgers')}
 				/>
 
 				{/* Card 2 - Daily Breads (Pequeña con badge glass) */}
@@ -41,6 +56,7 @@ const Menu = () => {
 					badge="Orgánico"
 					badgeType="glass"
 					variant="small"
+					onClick={() => selectCategory('breads')}
 				/>
 
 				{/* Card 3 - Iced Drinks (Pequeña sin badge) */}
@@ -49,6 +65,7 @@ const Menu = () => {
 					alt="Bebida refrescante de menta helada"
 					title="Bebidas Frías"
 					variant="small"
+					onClick={() => selectCategory('drinks')}
 				/>
 
 				{/* Card 4 - Family Combos (Extra grande - 2 columnas) */}
@@ -60,6 +77,7 @@ const Menu = () => {
 					badgeType="primary"
 					cta="Ver Ofertas"
 					variant="extra-large"
+					onClick={() => selectCategory('combos')}
 				/>
 			</div>
 			<Modal
