@@ -11,7 +11,7 @@ export const categories: ICategory[] = [
 	{
 		id: 'burgers',
 		name: ProductCategory.BURGER,
-		icon: 'lunch_dining',
+		icon: 'burger',
 		title: 'Hamburguesas',
 		subtitle: 'Carne premium y vegetales frescos',
 		color: CategoryColor.ORANGE,
@@ -29,7 +29,7 @@ export const categories: ICategory[] = [
 	{
 		id: 'breads',
 		name: ProductCategory.BREAD,
-		icon: 'bakery_dining',
+		icon: 'bakery',
 		title: 'Panadería',
 		subtitle: 'Horneado fresco cada día',
 		color: CategoryColor.AMBER,

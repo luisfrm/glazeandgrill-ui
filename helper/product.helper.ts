@@ -1,5 +1,5 @@
 // utils/productHelpers.ts
-import { IProduct, ProductCategory } from '@/config/types'
+import { ICategory, IProduct, ProductCategory } from '@/config/types'
 import { allProducts } from '@/services/products'
 
 // Obtener producto por ID numérico
@@ -34,4 +34,9 @@ export const getFeaturedProducts = (): IProduct[] => {
 // Obtener productos por rango de precio
 export const getProductsByPriceRange = (min: number, max: number): IProduct[] => {
   return allProducts.filter(product => product.price >= min && product.price <= max)
+}
+
+export const getSelectedCategory = (categories: ICategory[]): ICategory | null => {
+  const selectedCategory = categories.filter(category => category.selected)
+  return selectedCategory[0] || null
 }
