@@ -20,7 +20,7 @@ const badgeColors = {
 export default function ProductCard({ product, onSelect }: ProductCardProps) {
     return (
         <div
-            className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
+            className="group flex flex-col bg-white/60 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
             onClick={() => onSelect(product)}
         >
             {/* Image */}

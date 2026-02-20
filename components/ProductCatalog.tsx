@@ -7,10 +7,21 @@ import ProductCard from './ProductCard'
 import ProductDetail from './ProductDetail'
 import { cn } from '@/helper/helper'
 import { Beef, Cake, Croissant, Hamburger, IceCream, Martini, Pizza } from 'lucide-react'
+import useCategoryStore from '@/stores/useCategory'
 
 interface ProductCatalogProps {
   catalog: ICatalog
   showCatalogHeader?: boolean // Nueva prop opcional
+}
+
+const icons: Record<string, React.ReactNode> = {
+  burger: <Hamburger />,
+  cake: <Cake />,
+  bakery: <Croissant />,
+  local_bar: <Martini />,
+  icecream: <IceCream />,
+  restaurant: <Beef />,
+  fastfood: <Pizza />,
 }
 
 export default function ProductCatalog({
@@ -19,6 +30,7 @@ export default function ProductCatalog({
 }: ProductCatalogProps) {
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const { selectedCategory } = useCategoryStore();
 
   useEffect(() => {
     if (containerRef.current) {
@@ -35,16 +47,6 @@ export default function ProductCatalog({
 
   const handleBack = () => {
     setSelectedProduct(null)
-  }
-
-  const icons: Record<string, React.ReactNode> = {
-    lunch_dining: <Hamburger />,
-    cake: <Cake />,
-    bakery_dining: <Croissant />,
-    local_bar: <Martini />,
-    icecream: <IceCream />,
-    restaurant: <Beef />,
-    fastfood: <Pizza />,
   }
 
   return (
@@ -65,58 +67,15 @@ export default function ProductCatalog({
           )}
 
           {/* Categorías */}
-          {catalog.categories.map((category: ICategory, index: number) => (
-            <section
-              key={category.id}
-              className={cn(
-                'space-y-6',
-                index > 0 && 'pt-6 border-t border-gray-100'
-              )}
-            >
-              {/* Header de la Categoría */}
-              <div className="flex items-center gap-4">
-                <div className={cn(
-                  'w-12 h-12 rounded-full flex items-center justify-center shrink-0',
-                  category.color === 'sweet' && 'bg-pink-100 text-pink-500',
-                  category.color === 'orange' && 'bg-orange-100 text-orange-500',
-                  category.color === 'amber' && 'bg-amber-100 text-amber-600',
-                  category.color === 'emerald' && 'bg-emerald-100 text-emerald-600',
-                  category.color === 'rose' && 'bg-rose-100 text-rose-500',
-                )}>
-                  <span className="text-2xl">
-                    {
-                      icons[category.icon]
-                    }
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-800 text-gray-900">
-                    {category.title}
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    {category.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Grid de Productos */}
-              {category.products.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {category.products.map((product: IProduct) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onSelect={handleSelectProduct}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-400 text-sm italic">
-                  No hay productos disponibles en esta categoría
-                </p>
-              )}
-            </section>
-          ))}
+          {
+            selectedCategory ? (
+              <ProductCatalogItem key={selectedCategory.id} category={selectedCategory} index={0} handleSelectProduct={handleSelectProduct} />
+            ) : (
+              catalog.categories.map((category: ICategory, index: number) => (
+                <ProductCatalogItem key={category.id} category={category} index={index} handleSelectProduct={handleSelectProduct} />
+              ))
+            )
+          }
 
           {/* Estado vacío */}
           {catalog.categories.length === 0 && (
@@ -137,5 +96,67 @@ export default function ProductCatalog({
         <ProductDetail product={selectedProduct} onBack={handleBack} />
       )}
     </div>
+  )
+}
+
+interface ProductCatalogItemProps {
+  category: ICategory
+  index: number
+  handleSelectProduct: (product: IProduct) => void
+}
+
+const ProductCatalogItem = ({ category, index, handleSelectProduct }: ProductCatalogItemProps) => {
+
+  return (
+    <section
+      key={category.id}
+      className={cn(
+        'space-y-6',
+        index > 0 && 'pt-6 border-t border-gray-100'
+      )}
+    >
+      {/* Header de la Categoría */}
+      <div className="flex items-center gap-4">
+        <div className={cn(
+          'w-12 h-12 rounded-full flex items-center justify-center shrink-0',
+          category.color === 'sweet' && 'bg-pink-100 text-pink-500',
+          category.color === 'orange' && 'bg-orange-100 text-orange-500',
+          category.color === 'amber' && 'bg-amber-100 text-amber-600',
+          category.color === 'emerald' && 'bg-emerald-100 text-emerald-600',
+          category.color === 'rose' && 'bg-rose-100 text-rose-500',
+        )}>
+          <span className="text-2xl">
+            {
+              icons[category.icon]
+            }
+          </span>
+        </div>
+        <div>
+          <h3 className="text-2xl font-800 text-gray-900">
+            {category.title}
+          </h3>
+          <p className="text-sm text-gray-500">
+            {category.subtitle}
+          </p>
+        </div>
+      </div>
+
+      {/* Grid de Productos */}
+      {category.products.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {category.products.map((product: IProduct) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onSelect={handleSelectProduct}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-400 text-sm italic">
+          No hay productos disponibles en esta categoría
+        </p>
+      )}
+    </section>
   )
 }

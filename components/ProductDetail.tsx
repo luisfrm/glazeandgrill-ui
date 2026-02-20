@@ -48,7 +48,7 @@ export default function ProductDetail({ product, onBack }: ProductDetailProps) {
       </div>
 
       {/* Content Section */}
-      <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col bg-white/40 rounded-lg">
+      <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col bg-white/60 rounded-lg">
         {/* Header */}
         <div className="flex justify-between items-start mb-6">
           <div>
